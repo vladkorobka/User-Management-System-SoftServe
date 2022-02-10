@@ -1,40 +1,40 @@
-import React, { Component } from "react"
-import API from "../API.js"
+import React, { Component } from 'react';
+import API from '../API';
 
 class Department extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       departmentDescription: null,
       requestError: null
-    }
+    };
   }
 
-  componentDidMount () {
-    const departmentid = this.props.match.params.id;
+  componentDidMount() {
+    const { match: { params: { id } } } = this.props;
     const getDepartamentById = async () => {
-      const data = await API.getDepartamentById(departmentid);
-      if (data.statusText === "OK") {
+      const data = await API.getDepartamentById(id);
+      if (data.statusText === 'OK') {
         this.setState({
           departmentDescription: data.data.description
-        })
+        });
       } else {
         this.setState({
           requestError: data
-        })
+        });
       }
     };
 
     getDepartamentById();
   }
 
-  render () {
-    if (this.state.requestError) {
-      return <div><h1>{this.state.requestError}</h1></div>
-    } else {
-      return <div>{this.state.departmentDescription}</div>
+  render() {
+    const { requestError, departmentDescription } = this.state;
+    if (requestError) {
+      return <div><h1>{requestError}</h1></div>;
     }
+    return <div>{departmentDescription}</div>;
   }
 }
 
-export default Department
+export default Department;

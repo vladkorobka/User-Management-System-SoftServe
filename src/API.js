@@ -2,18 +2,18 @@ import axios from 'axios';
 import env from 'react-dotenv';
 
 const API = {
-  SERVER: env.SERVER,
-  TOKEN: env.TOKEN,
-
   getDepartaments() {
-    return axios.get(`${API.SERVER}/api/department`, {
+    return axios.get(`${env.SERVER}/api/department`, {
       headers: {
-        Authorization: API.TOKEN
+        Authorization: env.TOKEN
       }
     })
       .catch((error) => {
+        // const { response: { status }, response: { statusText } } = error;
+        // console.log(status);
+        // console.log(statusText);
         let errorMessage;
-        if (error.response) {
+        if (error.status) {
           errorMessage = '404';
         } else if (error.request) {
           errorMessage = error.request;
@@ -25,9 +25,9 @@ const API = {
   },
 
   getDepartamentById(id) {
-    return axios.get(`${API.SERVER}/api/department/${id}`, {
+    return axios.get(`${env.SERVER}/api/department/${id}`, {
       headers: {
-        Authorization: API.TOKEN
+        Authorization: env.TOKEN
       }
     })
       .catch((error) => {

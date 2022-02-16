@@ -31,7 +31,7 @@ class Department extends Component {
   render() {
     const { requestError, departmentDescription } = this.state;
     if (requestError) {
-      return <div><h1>{requestError}</h1></div>;
+      return <h1>{requestError}</h1>;
     }
     return <div>{departmentDescription}</div>;
   }

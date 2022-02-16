@@ -1,16 +1,16 @@
 import axios from 'axios';
+import env from 'react-dotenv';
 
 const API = {
-  SERWER: 'http://localhost:3000',
-  TOKEN: '0123456789',
+  SERVER: env.SERVER,
+  TOKEN: env.TOKEN,
 
   getDepartaments() {
-    return axios.get(`${API.SERWER}/api/department`, {
+    return axios.get(`${API.SERVER}/api/department`, {
       headers: {
         Authorization: API.TOKEN
       }
     })
-      .then((response) => response)
       .catch((error) => {
         let errorMessage;
         if (error.response) {
@@ -25,12 +25,11 @@ const API = {
   },
 
   getDepartamentById(id) {
-    return axios.get(`${API.SERWER}/api/department/${id}`, {
+    return axios.get(`${API.SERVER}/api/department/${id}`, {
       headers: {
         Authorization: API.TOKEN
       }
     })
-      .then((response) => response)
       .catch((error) => {
         let errorMessage;
         if (error.response) {

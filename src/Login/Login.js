@@ -40,17 +40,19 @@ class Login extends Component {
       return <Redirect to='/departments' />
     }
     return (
-      <form onSubmit={this.authFormSubmitHandler}>
-        <label htmlFor='login'>Login:
-          <input id='login' type='text' value={login} onChange={this.loginFormHandler} placeholder='login' />
-        </label>
+      <div>
+        <form onSubmit={this.authFormSubmitHandler}>
+          <label htmlFor='login'>Login:
+            <input id='login' type='text' value={login} onChange={this.loginFormHandler} placeholder='login' />
+          </label>
 
-        <label htmlFor='password'>Password:
-          <input id='password' type='password' value={password} onChange={this.passwordFormHandler} placeholder='password' />
-        </label>
+          <label htmlFor='password'>Password:
+            <input id='password' type='password' value={password} onChange={this.passwordFormHandler} placeholder='password' />
+          </label>
 
-        <button type='submit'>Log in</button>
-      </form>
+          <button type='submit'>Log in</button>
+        </form>
+      </div>
     )
   }
 }

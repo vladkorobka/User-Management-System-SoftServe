@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import API from '../API'
 
 class Department extends Component {
@@ -30,6 +31,10 @@ class Department extends Component {
   }
 
   render () {
+    if (!localStorage.getItem('token')) {
+      return <Redirect to='/login' />
+    }
+
     const { requestError, departmentDescription } = this.state;
     if (requestError) {
       return <h1>{requestError}</h1>;

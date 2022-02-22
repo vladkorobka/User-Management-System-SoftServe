@@ -13,9 +13,9 @@ function App() {
   return (
     <Router>
       <div className='App'>
-          <PrivateRoute exact path='/' />
           <Suspense fallback={<div>Loading</div>}>
             <Switch>
+            <PrivateRoute exact path='/' />
               <Route path='/login' component={Login} />
               <Route path='/departments/:id' component={Department} />
               <Route path='/departments' component={Departments} />

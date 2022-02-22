@@ -1,20 +1,18 @@
 import axios from 'axios'
 
 const API = {
+  baseHeaders: {
+    headers: {
+      Authorization: process.env.REACT_APP_TOKEN
+    }
+  },
+
   getDepartaments() {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, {
-      headers: {
-        Authorization: process.env.REACT_APP_TOKEN
-      }
-    })
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
   },
 
   getDepartamentById(id) {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, {
-      headers: {
-        Authorization: process.env.REACT_APP_TOKEN
-      }
-    })
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
   }
 }
 

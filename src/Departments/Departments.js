@@ -1,44 +1,48 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import API from '../API';
+import React, { Component } from 'react'
+import { Link/* , Redirect */} from 'react-router-dom'
+import API from '../API'
 
 class Departments extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       departments: [],
       requestError: null
-    };
+    }
   }
 
-  componentDidMount() {
-    const getDepartaments = async () => {
-      const data = await API.getDepartaments();
-      if (data.statusText === 'OK') {
-        this.setState({
-          departments: data.data
-        });
-      } else {
-        this.setState({
-          requestError: data
-        });
+  componentDidMount () {
+      const getDepartaments = async () => {
+        try {
+          const data = await API.getDepartaments()
+          if (data.status === 200) {
+            this.setState({
+              departments: data.data
+            })
+          }
+        } catch (error) {
+          this.setState({
+            requestError: error.message
+          })
+        }
       }
-    };
-
-    getDepartaments();
+      getDepartaments()
   }
 
-  render() {
-    const { requestError, departments } = this.state;
-    const error = requestError;
-    const dataToRender = departments.map(({ id, name }) => <div key={id}><Link to={`/departments/${id}`}>{`${name}`}</Link></div>);
+  render () {
+    const {requestError, departments} = this.state
 
-    const element = error
-      ? <h1>{error}</h1>
-      : <div>{dataToRender}</div>;
+    const dataToRender = departments.map(({id, name}) =>
+      <li key={id}>
+        <Link to={`/departments/${id}`}>{`${name}`}</Link>
+      </li>
+    )
 
-    return element;
+    if (requestError) {
+      return <h1>{requestError}</h1>
+    }
+    return <ul>{dataToRender}</ul>
   }
 }
 
-export default Departments;
+export default Departments

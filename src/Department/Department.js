@@ -12,35 +12,35 @@ class Department extends Component {
   }
 
   componentDidMount () {
+    this.getDepartamentById()
+  }
+
+  getDepartamentById = async () => {
     const { match: { params: { id } } } = this.props
-    const getDepartamentById = async () => {
-      try {
-        const data = await API.getDepartamentById(id)
-        if (data.status === 200) {
-          this.setState({
-            departmentDescription: data.data.description
-          })
-        }
-      } catch (error) {
-        this.setState({
-          requestError: error.message
-        })
-      }
+    try {
+      const data = await API.getDepartamentById(id)
+      this.setState({
+        departmentDescription: data.data.description
+      })
+    } catch (error) {
+      this.setState({
+        requestError: error.message
+      })
     }
-    getDepartamentById()
   }
 
   render () {
-    if (!localStorage.getItem('token')) {
-      return <Redirect to='/login' />
-    }
-
     const { requestError, departmentDescription } = this.state;
     if (requestError) {
       return <h1>{requestError}</h1>;
     }
+
+    if (!localStorage.getItem('token')) {
+      return <Redirect to='/login' />
+    }
+
     return <div>{departmentDescription}</div>;
   }
 }
 
-export default Department;
+export default Department

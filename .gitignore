@@ -12,22 +12,6 @@
 /build
 
 # misc
-public/env.js
-.DS_Store
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# prettier
-.prettierignore
-.prettierrc.json
-
-# eslint
-.eslintrc.js
-
-package-lock.json
-duction.local
 *
 yarn-error.log*

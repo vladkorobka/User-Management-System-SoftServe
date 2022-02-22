@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const API = {
   getDepartaments() {
@@ -6,7 +6,7 @@ const API = {
       headers: {
         Authorization: process.env.REACT_APP_TOKEN
       }
-    });
+    })
   },
 
   getDepartamentById(id) {
@@ -14,8 +14,8 @@ const API = {
       headers: {
         Authorization: process.env.REACT_APP_TOKEN
       }
-    });
+    })
   }
-};
+}
 
-export default API;
+export default API

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link , Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import API from '../API'
 
 class Departments extends Component {
@@ -12,39 +12,33 @@ class Departments extends Component {
   }
 
   componentDidMount () {
-      const getDepartaments = async () => {
-        try {
-          const data = await API.getDepartaments()
-          if (data.status === 200) {
-            this.setState({
-              departments: data.data
-            })
-          }
-        } catch (error) {
-          this.setState({
-            requestError: error.message
-          })
-        }
-      }
-      getDepartaments()
+    this.getDepartaments()
+  }
+
+  getDepartaments = async () => {
+    try {
+      const data = await API.getDepartaments()
+      this.setState({
+        departments: data.data
+      })
+    } catch (error) {
+      this.setState({
+        requestError: error.message
+      })
+    }
   }
 
   render () {
+    const {requestError, departments} = this.state
+    if (requestError) {
+      return <h1>{requestError}</h1>
+    }
+
     if (!localStorage.getItem('token')) {
       return <Redirect to='/login' />
     }
 
-    const {requestError, departments} = this.state
-
-    const dataToRender = departments.map(({id, name}) =>
-      <li key={id}>
-        <Link to={`/departments/${id}`}>{`${name}`}</Link>
-      </li>
-    )
-
-    if (requestError) {
-      return <h1>{requestError}</h1>
-    }
+    const dataToRender = departments.map(({id, name}) => <li key={id}><Link to={`/departments/${id}`}>{`${name}`}</Link></li>)
     return <ul>{dataToRender}</ul>
   }
 }

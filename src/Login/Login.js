@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import './Login.css'
 
 class Login extends Component {
@@ -7,17 +6,15 @@ class Login extends Component {
     super(props)
     this.state = {
       login: '',
-      password: '',
-      auth: false
+      password: ''
     }
   }
 
   authFormSubmitHandler = (event) => {
     event.preventDefault()
     localStorage.setItem('token', process.env.REACT_APP_TOKEN)
-    this.setState({
-      auth: true
-    })
+    const { history } = this.props
+    history.push('/departments')
   }
 
   loginFormHandler = (event) => {
@@ -33,10 +30,7 @@ class Login extends Component {
   }
 
   render () {
-    const { login, password, auth } = this.state
-    if (auth) {
-      return <Redirect to='/departments' />
-    }
+    const { login, password} = this.state
 
     return (
       <div className='wrapper'>

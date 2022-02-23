@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import API from '../API'
 
 class Departments extends Component {
@@ -32,10 +32,6 @@ class Departments extends Component {
     const {requestError, departments} = this.state
     if (requestError) {
       return <h1>{requestError}</h1>
-    }
-
-    if (!localStorage.getItem('token')) {
-      return <Redirect to='/login' />
     }
 
     const dataToRender = departments.map(({id, name}) => <li key={id}><Link to={`/departments/${id}`}>{`${name}`}</Link></li>)

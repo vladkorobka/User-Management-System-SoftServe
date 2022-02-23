@@ -27,6 +27,8 @@ module.exports = {
       'ignoreComments': true
     }],
     'linebreak-style': 0,
-    'react/jsx-filename-extension': [0]
+    'react/jsx-filename-extension': [0],
+    'react/jsx-props-no-spreading': [0],
+    'react/prefer-stateless-function': [0]
   }
 };

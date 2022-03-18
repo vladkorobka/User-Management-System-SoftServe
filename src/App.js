@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PageError from './PageError/PageError'
+// import Error from './Error/Error'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
 import PrivateRouteLogin from './PrivateRouteLogin/PrivateRouteLogin'
 

@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import PageError from './PageError/PageError'
 import PrivateRoute from './PrivateRoute/PrivateRoute'
+import PrivateRouteLogin from './PrivateRouteLogin/PrivateRouteLogin'
 
 import Login from './Login/Login'
 
@@ -14,7 +15,7 @@ function App () {
       <div className='App'>
         <Switch>
           <PrivateRoute exact path='/' component={Login} />
-          <Route path='/login' component={Login} />
+          <PrivateRouteLogin path='/login' component={Login} />
           <Suspense fallback={<div>Loading</div>}>
             <Switch>
               <PrivateRoute path='/departments/:id' component={Department} />

@@ -3,16 +3,22 @@ import axios from 'axios'
 const API = {
   baseHeaders: {
     headers: {
-      Authorization: process.env.REACT_APP_TOKEN
+      Authorization: localStorage.getItem('token') // process.env.REACT_APP_TOKEN
     }
   },
 
   getDepartaments() {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
+    if (localStorage.getItem('token')) {
+      return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
+    }
+    return null
   },
 
   getDepartamentById(id) {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
+    if (localStorage.getItem('token')) {
+      return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
+    }
+    return null
   }
 }
 

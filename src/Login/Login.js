@@ -7,17 +7,20 @@ class Login extends Component {
     super(props)
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      isLoggedIn: false
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   authFormSubmitHandler = (event) => {
     event.preventDefault()
     localStorage.setItem(process.env.REACT_APP_TOKEN_NAME, process.env.REACT_APP_TOKEN)
     // const { history } = this.props // temp
     // history.push('/departments') // temp
-    return <Redirect to='/departments' /> // <-- this one doesn't work correctly
+    // return <Redirect to='/departments' /> // <-- this one doesn't work correctly
+    this.setState({
+      isLoggedIn: true
+    })
   }
 
   loginFormHandler = (event) => {
@@ -33,8 +36,11 @@ class Login extends Component {
   }
 
   render () {
-    const { login, password } = this.state
+    const { login, password, isLoggedIn } = this.state
 
+    if (isLoggedIn) {
+      return <Redirect to='/departments' />
+    }
     return (
       <div className='Login Login__wrapper'>
         <form onSubmit={this.authFormSubmitHandler}>

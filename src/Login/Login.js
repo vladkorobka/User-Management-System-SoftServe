@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import './Login.css'
+import './Login.scss'
 
 class Login extends Component {
   constructor (props) {
@@ -15,9 +15,6 @@ class Login extends Component {
   authFormSubmitHandler = (event) => {
     event.preventDefault()
     localStorage.setItem(process.env.REACT_APP_TOKEN_NAME, process.env.REACT_APP_TOKEN)
-    // const { history } = this.props // temp
-    // history.push('/departments') // temp
-    // return <Redirect to='/departments' /> // <-- this one doesn't work correctly
     this.setState({
       isLoggedIn: true
     })

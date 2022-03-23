@@ -8,17 +8,11 @@ const API = {
   },
 
   getDepartaments() {
-    if (localStorage.getItem(process.env.REACT_APP_TOKEN_NAME)) {
-      return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
-    }
-    return null
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
   },
 
   getDepartamentById(id) {
-    if (localStorage.getItem(process.env.REACT_APP_TOKEN_NAME)) {
-      return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
-    }
-    return null
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
   }
 }
 

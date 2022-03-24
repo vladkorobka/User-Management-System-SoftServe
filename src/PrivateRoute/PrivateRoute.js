@@ -6,7 +6,7 @@ export default function PrivateRoute({component: Component, ...rest}) {
     <Route
     {...rest}
     render={(props) => {
-      if (localStorage.getItem(process.env.REACT_APP_TOKEN_NAME) && props.location.pathname !== '/') {
+      if (localStorage.getItem(process.env.REACT_APP_TOKEN_NAME)) {
         return <Component {...props} />
       }
       return <Redirect to={

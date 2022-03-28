@@ -15,9 +15,11 @@ class Department extends Component {
   }
 
   getDepartamentById = async () => {
-    const { match: { params: { id } } } = this.props
+    // const { match: { params: { id } } } = this.props
+    // eslint-disable-next-line react/destructuring-assignment
+    const departmentId = this.props?.match?.params?.id
     try {
-      const data = await API.getDepartamentById(id)
+      const data = await API.getDepartamentById(departmentId)
       this.setState({
         departmentDescription: data.data.description
       })

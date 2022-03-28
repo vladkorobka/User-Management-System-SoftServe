@@ -40,7 +40,7 @@ class Login extends Component {
     }
     return (
       <div className='Login Login__wrapper'>
-        <form onSubmit={this.authFormSubmitHandler}>
+        <form className='Login Login__auth_form' onSubmit={this.authFormSubmitHandler}>
           <label htmlFor='login'>Login:
             <input id='login' type='text' value={login} onChange={this.loginFormHandler} />
           </label>

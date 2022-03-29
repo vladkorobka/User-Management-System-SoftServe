@@ -1,18 +1,12 @@
-import axios from 'axios'
+import departmentsAPI from './departmentsAPI'
 
 const API = {
-  baseHeaders: {
-    headers: {
-      Authorization: localStorage.getItem(process.env.REACT_APP_TOKEN_NAME)
-    }
-  },
-
   getDepartaments() {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
+    return departmentsAPI.getDepartaments()
   },
 
   getDepartamentById(id) {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
+    return departmentsAPI.getDepartamentById(id)
   }
 }
 

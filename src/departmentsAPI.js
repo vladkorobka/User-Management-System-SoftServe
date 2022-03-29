@@ -4,11 +4,11 @@ import API from './API'
 const departmentsAPI = {
 
   getDepartaments() {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.baseHeaders)
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department`, API.getBaseHeaders())
   },
 
   getDepartamentById(id) {
-    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.baseHeaders)
+    return axios.get(`${process.env.REACT_APP_SERVER}/api/department/${id}`, API.getBaseHeaders())
   }
 }
 

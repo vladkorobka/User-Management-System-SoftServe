@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import API from '../API'
+import API from '../departmentsAPI'
 
 class Department extends Component {
   constructor (props) {

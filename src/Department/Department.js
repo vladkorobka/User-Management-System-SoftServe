@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import API from "../API.js"
+import React, { Component } from 'react'
+import API from '../departmentsAPI'
 
 class Department extends Component {
   constructor (props) {
@@ -11,29 +11,31 @@ class Department extends Component {
   }
 
   componentDidMount () {
-    const departmentid = this.props.match.params.id;
-    const getDepartamentById = async () => {
-      const data = await API.getDepartamentById(departmentid);
-      if (data.statusText === "OK") {
-        this.setState({
-          departmentDescription: data.data.description
-        })
-      } else {
-        this.setState({
-          requestError: data
-        })
-      }
-    };
+    this.getDepartamentById()
+  }
 
-    getDepartamentById();
+  getDepartamentById = async () => {
+    // const { match: { params: { id } } } = this.props
+    // eslint-disable-next-line react/destructuring-assignment
+    const departmentId = this.props?.match?.params?.id
+    try {
+      const data = await API.getDepartamentById(departmentId)
+      this.setState({
+        departmentDescription: data.data.description
+      })
+    } catch (error) {
+      this.setState({
+        requestError: error.message
+      })
+    }
   }
 
   render () {
-    if (this.state.requestError) {
-      return <div><h1>{this.state.requestError}</h1></div>
-    } else {
-      return <div>{this.state.departmentDescription}</div>
+    const { requestError, departmentDescription } = this.state
+    if (requestError) {
+      return <h1>{requestError}</h1>
     }
+    return <div>{departmentDescription}</div>
   }
 }
 

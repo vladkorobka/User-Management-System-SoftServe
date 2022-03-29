@@ -1,26 +1,35 @@
-import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Error from "./Error/Error"
-import Menu from "./Menu/Menu"
-import Home from "./Home/Home"
-import Departments from "./Departments/Departments"
-import Department from "./Department/Department"
+import React, { Suspense } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import PageError from './PageError/PageError'
+import PrivateRoute from './PrivateRoute/PrivateRoute'
 
+import Login from './Login/Login'
 
-function App() {
+const Departments = React.lazy(() => import ('./Departments/Departments'))
+const Department = React.lazy(() => import ('./Department/Department'))
+
+function RedirectToDepartments () {
+  return <Redirect to='/departments' />
+}
+
+function App () {
   return (
     <Router>
-      <div className="App">
-        <Menu/>
+      <div className='App'>
         <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/departments/:id" component={Department}/>
-          <Route path="/departments" component={Departments}/>
-          <Route path="/*" component={Error}/>
+          <Route path='/login' component={Login} />
+          <Suspense fallback={<div>Loading</div>}>
+            <Switch>
+              <PrivateRoute exact path='/' component={RedirectToDepartments} />
+              <PrivateRoute path='/departments/:id' component={Department} />
+              <PrivateRoute path='/departments' component={Departments} />
+              <Route path='*' component={PageError} />
+            </Switch>
+          </Suspense>
         </Switch>
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

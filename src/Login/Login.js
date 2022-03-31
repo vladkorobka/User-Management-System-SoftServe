@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './Login.scss'
+import { Form, FormGroup, Input, Button } from 'reactstrap'
 
 class Login extends Component {
   constructor (props) {
@@ -40,17 +41,15 @@ class Login extends Component {
     }
     return (
       <div className='Login Login__wrapper'>
-        <form className='Login Login__auth_form' onSubmit={this.authFormSubmitHandler}>
-          <label htmlFor='login'>Login:
-            <input id='login' type='text' value={login} onChange={this.loginFormHandler} />
-          </label>
-
-          <label htmlFor='password'>Password:
-            <input id='password' type='password' value={password} onChange={this.passwordFormHandler} />
-          </label>
-
-          <button type='submit'>Log in</button>
-        </form>
+        <Form className='Login Login__auth_form' onSubmit={this.authFormSubmitHandler}>
+          <FormGroup>
+            <Input id='login' type='text' value={login} placeholder='Login' onChange={this.loginFormHandler} />
+          </FormGroup>
+          <FormGroup>
+            <Input id='password' type='password' value={password} placeholder='Password' onChange={this.passwordFormHandler} />
+          </FormGroup>
+          <Button color="primary" outline type='submit'>Log in</Button>
+        </Form>
       </div>
     )
   }
